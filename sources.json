@@ -1,0 +1,123 @@
+{
+  "tables": {
+    "counts": {
+      "key": [
+        "month",
+        "line",
+        "market",
+        "sku",
+        "scale"
+      ],
+      "columns": [
+        "month",
+        "line",
+        "market",
+        "sku",
+        "scale",
+        "eligible",
+        "inspected",
+        "high",
+        "middle",
+        "low",
+        "unknown",
+        "unknown_reason",
+        "sampling"
+      ]
+    },
+    "mapping": {
+      "key": [
+        "id"
+      ],
+      "columns": [
+        "id",
+        "previous",
+        "current",
+        "market",
+        "share_min",
+        "share_max",
+        "old_scope"
+      ]
+    },
+    "paired": {
+      "key": [
+        "line",
+        "market",
+        "sku",
+        "old",
+        "new"
+      ],
+      "columns": [
+        "line",
+        "market",
+        "sku",
+        "old",
+        "new",
+        "count",
+        "eligible"
+      ]
+    },
+    "baskets": {
+      "key": [
+        "edition",
+        "line",
+        "market",
+        "sku"
+      ],
+      "columns": [
+        "edition",
+        "line",
+        "market",
+        "sku",
+        "weight",
+        "scale",
+        "high_points",
+        "middle_points",
+        "low_points",
+        "min_pairs"
+      ]
+    },
+    "targets": {
+      "key": [
+        "id"
+      ],
+      "columns": [
+        "id",
+        "level",
+        "market",
+        "edition",
+        "target",
+        "fixed",
+        "effective_from",
+        "effective_until",
+        "region_floor",
+        "region_cap"
+      ]
+    }
+  },
+  "links": [
+    [
+      "targets",
+      "edition",
+      "baskets",
+      "edition"
+    ],
+    [
+      "mapping",
+      "previous",
+      "counts",
+      "sku"
+    ],
+    [
+      "mapping",
+      "current",
+      "counts",
+      "sku"
+    ],
+    [
+      "paired",
+      "sku",
+      "counts",
+      "sku"
+    ]
+  ]
+}

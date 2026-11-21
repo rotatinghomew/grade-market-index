@@ -1,0 +1,5 @@
+id,level,market,edition,target,fixed,effective_from,effective_until,region_floor,region_cap
+T01,regional,domestic,published,68,1,2026-Q1,2026-Q3,68,79
+T02,regional,export,published,77,1,2026-Q1,2026-Q3,77,82
+T03,all,,candidate,86,0,2026-Q3,2026-Q4,0,100
+T04,regional,new,candidate,79,0,2026-Q3,2026-Q4,73,81

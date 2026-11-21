@@ -1,0 +1,9 @@
+edition,line,market,sku,weight,scale,high_points,middle_points,low_points,min_pairs
+published,A,domestic,A0,0.4,old,100,60,20,30
+published,A,export,A0,0.3,old,100,60,20,30
+published,B,domestic,B0,0.3,old,100,60,20,30
+candidate,A,domestic,A1,0.2,new,100,50,10,35
+candidate,A,domestic,A2,0.2,new,100,50,10,35
+candidate,A,export,A1,0.15,new,100,50,10,35
+candidate,B,domestic,B0,0.15,new,100,50,10,35
+candidate,B,new,B9,0.3,new,100,50,10,35

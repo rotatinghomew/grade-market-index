@@ -1,0 +1,14 @@
+line,market,sku,old,new,count,eligible
+A,domestic,A1,high,high,26,81
+A,domestic,A1,high,middle,12,81
+A,domestic,A1,middle,high,2,81
+A,domestic,A1,middle,middle,24,81
+A,domestic,A1,middle,low,6,81
+A,domestic,A1,low,low,8,81
+A,domestic,A1,unknown,low,3,81
+A,export,A1,high,middle,3,9
+A,export,A1,high,high,5,9
+A,export,A1,low,low,1,9
+B,domestic,B0,high,high,19,62
+B,domestic,B0,middle,middle,28,62
+B,domestic,B0,low,low,15,62

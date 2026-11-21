@@ -1,0 +1,13 @@
+month,line,market,sku,scale,eligible,inspected,high,middle,low,unknown,unknown_reason,sampling
+2025-04,A,domestic,A0,old,220,100,56,25,13,6,low_signal,routine
+2025-04,A,export,A0,old,170,90,62,21,7,0,,routine
+2025-04,B,domestic,B0,old,180,100,28,37,26,9,no_read,routine
+2025-05,A,domestic,A0,old,200,100,47,34,11,8,low_signal,routine
+2025-05,B,domestic,B0,old,130,92,33,38,14,7,no_read,routine
+2026-04,A,domestic,A1,new,210,125,81,28,12,4,low_signal,routine
+2026-04,A,domestic,A2,new,280,95,79,9,6,1,no_read,selected
+2026-04,A,export,A1,new,110,77,50,14,8,5,no_read,routine
+2026-04,B,domestic,B0,new,140,100,27,40,25,8,no_read,routine
+2026-04,B,new,B9,new,305,250,197,28,17,8,low_signal,routine
+2026-05,A,domestic,A1,new,220,105,62,29,12,2,no_read,routine
+2026-05,B,new,B9,new,330,253,190,36,16,11,low_signal,routine
