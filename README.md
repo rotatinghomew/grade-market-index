@@ -17,3 +17,51 @@
 需要 Python 3.11。分析环境可使用 `python3 -m pip install -r requirements.txt` 安装锁定的数值依赖。
 
 从仓库根目录执行 `python3 check_sources.py`，返回各表行数；其他同格式资料可用 `python3 check_sources.py 路径` 检查。脚本只读资料并报告结构或引用错误，不给出业务结论。执行 `python3 -m unittest discover -s tests -v` 检查资料约定及拒绝重复身份的行为。
+
+## 谈判核算入口
+
+```bash
+# 完整报告和机器可读 JSON
+python3 analyze.py report --quarter 2026-Q2 \
+  --out NEGOTIATION_REPORT.md --json-out report.json
+
+# 可点击切换“当前读数 / 同篮子 / 构成 / 桥 / 目标回溯”的离线页面
+python3 analyze.py dashboard --quarter 2026-Q2 --out dashboard.html
+
+# 三个可切换视图
+python3 analyze.py current  --quarter 2026-Q2 --json
+python3 analyze.py basket candidate --quarter 2026-Q2
+python3 analyze.py compare candidate --from-months 2026-04 --to-months 2026-05
+python3 analyze.py operating --old-months 2025-04,2025-05 --new-months 2026-04,2026-05
+python3 analyze.py composition candidate --quarter 2026-Q2
+python3 analyze.py sampling --quarter 2026-Q2
+
+# 跨规格/双评/参照重合，以及地区目标回溯
+python3 analyze.py bridge --quarter 2026-Q2 --json
+python3 analyze.py overlap --json
+python3 analyze.py targets --quarter 2026-Q2
+python3 analyze.py trace T01 --quarter 2026-Q2 --json
+python3 analyze.py trace --market new --quarter 2026-Q2
+```
+
+也可在 Python 中使用：
+
+```python
+from quality_index import Project
+
+p = Project.load("data")
+p.full_report("2026-Q2")
+p.evaluate_target("T04", quarter="2026-Q2")
+p.reference_overlap("published", "candidate")
+```
+
+### 核算口径
+
+- 规格得分只使用高/中/低件数：`(high×高分 + middle×中分 + low×低分)/(high+middle+low)`；`unknown` 不按任何等级赋分，只报告原因、unknown 率和“全部 unknown 零收益”的可见性边界。
+- 地区指数按该地区篮子权重归一化；缺规格或月份时保留缺失权重，输出的 `partial_normalized_index_not_official` 只用于观察，不是合同指数。
+- 规格拆分按 `share_min` 建立保守、非重叠老件台账；未证实份额保留为 `mapping_residual_weight`，不把同一批老件同时借给 A1、A2。
+- 双评交叉数的 `eligible` 是跨评分格共享值，不逐格相加；双评数低于篮子 `min_pairs` 时不做等级边界转换。
+- 新市场/新规格计入当前 candidate 读数和实际经营指数，但在 published 同篮承诺中列为 scope/参照不重合，不为了同比而删除。
+- 固定 published 目标与 candidate 试拟目标分别解释。季度区间按含端点处理；例如 2026-Q3 同时存在 T01/T02 与 T03/T04 时，原承诺不被候选目标替换。
+- 新增月份或第二套篮子（例如 `edition=candidate2`）写入同结构 CSV 后，所有命令按参数重新核算，不需要改月份常量。
+
